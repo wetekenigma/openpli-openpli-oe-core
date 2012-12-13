@@ -59,11 +59,9 @@ GST_BASE_RDEPS = " \
 	gst-plugins-base-app \
 	gst-plugins-base-audioconvert \
 	gst-plugins-base-audioresample \
-	gst-plugins-base-decodebin \
-	gst-plugins-base-decodebin2 \
 	gst-plugins-base-ivorbisdec \
 	gst-plugins-base-ogg \
-	gst-plugins-base-playbin \
+	gst-plugins-base-playback \
 	gst-plugins-base-subparse \
 	gst-plugins-base-typefindfunctions \
 	gst-plugins-base-vorbis \
@@ -91,9 +89,10 @@ GST_GOOD_RDEPS = " \
 GST_BAD_RDEPS = " \
 	gst-plugins-bad-cdxaparse \
 	gst-plugins-bad-mms \
-	gst-plugins-bad-mpegdemux \
+	gst-plugins-bad-mpegpsdemux \
+	gst-plugins-bad-mpegtsdemux \
 	gst-plugins-bad-rtmp \
-	gst-plugins-bad-vcdsrc \
+	gst-plugins-bad-fragmented \
 	"
 
 GST_UGLY_RDEPS = " \
@@ -103,8 +102,6 @@ GST_UGLY_RDEPS = " \
 	gst-plugins-ugly-cdio \
 	gst-plugins-ugly-dvdsub \
 	gst-plugins-ugly-mad \
-	gst-plugins-ugly-mpegaudioparse \
-	gst-plugins-ugly-mpegstream \
 	"
 
 # DVD playback is integrated, we need the libraries
@@ -146,7 +143,7 @@ inherit gitpkgv
 
 PV = "2.7+git${SRCPV}"
 PKGV = "2.7+git${GITPKGV}"
-PR = "r41"
+PR = "r42"
 
 ENIGMA2_BRANCH ?= "master"
 SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/enigma2;protocol=git;branch=${ENIGMA2_BRANCH}"
@@ -168,6 +165,7 @@ PKGV_enigma2-fonts = "${PV_enigma2-fonts}"
 FILES_enigma2-fonts = "${datadir}/fonts"
 
 EXTRA_OECONF = "\
+	--with-gstversion=1.0 \
 	--with-libsdl=no --with-boxtype=${MACHINE} \
 	--enable-dependency-tracking \
 	${@base_contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \

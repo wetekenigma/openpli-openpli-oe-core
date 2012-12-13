@@ -12,17 +12,19 @@ S = "${WORKDIR}/git"
 
 inherit gitpkgv
 
-PV = "0.10.0+git${SRCPV}"
-PKGV = "0.10.0+git${GITPKGV}"
+GSTVERSION = "1.0"
+
+PV = "${GSTVERSION}+git${SRCPV}"
+PKGV = "${GSTVERSION}+git${GITPKGV}"
 PR = "r2"
 
 inherit autotools pkgconfig
 
-FILES_${PN} = "${libdir}/gstreamer-0.10/*.so*"
-FILES_${PN}-dev += "${libdir}/gstreamer-0.10/*.la"
-FILES_${PN}-staticdev += "${libdir}/gstreamer-0.10/*.a"
-FILES_${PN}-dbg += "${libdir}/gstreamer-0.10/.debug"
+FILES_${PN} = "${libdir}/gstreamer-${GSTVERSION}/*.so*"
+FILES_${PN}-dev += "${libdir}/gstreamer-${GSTVERSION}/*.la"
+FILES_${PN}-staticdev += "${libdir}/gstreamer-${GSTVERSION}/*.a"
+FILES_${PN}-dbg += "${libdir}/gstreamer-${GSTVERSION}/.debug"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-EXTRA_OECONF = "${DVBMEDIASINK_CONFIG}"
+EXTRA_OECONF = "${DVBMEDIASINK_CONFIG} --with-gstversion=${GSTVERSION}"

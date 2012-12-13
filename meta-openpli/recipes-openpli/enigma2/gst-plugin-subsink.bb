@@ -7,9 +7,13 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=7fbc338309ac38fefcd64b04bb903e34"
 
 inherit gitpkgv
 
-PV = "0.10.0+git${SRCPV}"
-PKGV = "0.10.0+git${GITPKGV}"
+GSTVERSION = "1.0"
+
+PV = "${GSTVERSION}+git${SRCPV}"
+PKGV = "${GSTVERSION}+git${GITPKGV}"
 PR = "r0"
+
+EXTRA_OECONF = "--with-gstversion=${GSTVERSION}"
 
 SRC_URI = "git://openpli.git.sourceforge.net/gitroot/openpli/gstsubsink;protocol=git"
 
@@ -17,9 +21,9 @@ S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig
 
-FILES_${PN} = "${libdir}/gstreamer-0.10/*.so*"
-FILES_${PN}-dev += "${libdir}/gstreamer-0.10/*.la"
-FILES_${PN}-staticdev += "${libdir}/gstreamer-0.10/*.a"
-FILES_${PN}-dbg += "${libdir}/gstreamer-0.10/.debug"
+FILES_${PN} = "${libdir}/gstreamer-${GSTVERSION}/*.so*"
+FILES_${PN}-dev += "${libdir}/gstreamer-${GSTVERSION}/*.la"
+FILES_${PN}-staticdev += "${libdir}/gstreamer-${GSTVERSION}/*.a"
+FILES_${PN}-dbg += "${libdir}/gstreamer-${GSTVERSION}/.debug"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
