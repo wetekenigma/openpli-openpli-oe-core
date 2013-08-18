@@ -1,9 +1,9 @@
 DESCRIPTION = "Configuration files for 3rd-party feeds"
-PR = "r0"
+PR = "r1"
 
 require conf/license/openpli-gplv2.inc
 
-FEEDS = "3rd-party"
+FEEDS = "3rd-party 3rd-party-${MACHINE}"
 
 do_compile() {
     mkdir -p ${S}/${sysconfdir}/opkg
