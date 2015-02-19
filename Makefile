@@ -29,6 +29,7 @@ BBLAYERS ?= \
 	$(CURDIR)/meta-xtrend \
 	$(CURDIR)/meta-formuler \
 	$(CURDIR)/meta-hd \
+	$(CURDIR)/meta-aml \
 	$(CURDIR)/meta-local
 
 CONFFILES = \
